@@ -13,7 +13,9 @@ export class EventStream {
     const tick = () => {
       const event: Event = generateRandomEvent();
       this.#emitter.emit("event", event);
-      const next = 1000 + Math.random() * 2000; // 1–3 seconds
+      const base = Number(import.meta.env.VITE_EVENT_INTERVAL_MS) || 1000;
+      const jitter = Number(import.meta.env.VITE_EVENT_JITTER_MS) || 2000;
+      const next = base + Math.random() * jitter; // configurable interval
       this.#timer = window.setTimeout(tick, next);
     };
     tick();

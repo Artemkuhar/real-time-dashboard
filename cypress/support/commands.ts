@@ -42,6 +42,16 @@ declare global {
        * Clear all filters
        */
       clearFilters(): Chainable<void>;
+
+      /**
+       * Wait for the event details panel to open
+       */
+      waitForDetailsPanelOpen(): Chainable<void>;
+
+      /**
+       * Close the event details panel
+       */
+      closeDetailsPanel(): Chainable<void>;
     }
   }
 }
@@ -77,6 +87,23 @@ Cypress.Commands.add("searchEvents", (query: string) => {
 
 Cypress.Commands.add("clearFilters", () => {
   cy.get('[data-testid="reset-filters-button"]').click();
+});
+
+Cypress.Commands.add("waitForDetailsPanelOpen", () => {
+  cy.get('[data-testid="event-details-panel"][data-state="open"]', {
+    timeout: 10000,
+  }).should("be.visible");
+  cy.get('[data-testid="event-details"]', { timeout: 10000 }).should(
+    "be.visible",
+  );
+});
+
+Cypress.Commands.add("closeDetailsPanel", () => {
+  // Send Escape to close and verify it's gone
+  cy.get("body").type("{esc}");
+  cy.get('[data-testid="event-details-panel"][data-state="open"]').should(
+    "not.exist",
+  );
 });
 
 export {};

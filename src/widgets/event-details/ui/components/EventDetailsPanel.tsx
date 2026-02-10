@@ -9,7 +9,11 @@ export const EventDetailsPanel = () => {
 
   return (
     <Sheet open={isOpen} onOpenChange={(open) => !open && select(null)}>
-      <SheetContent side="right" className="w-[380px] p-0">
+      <SheetContent
+        side="right"
+        className="w-[380px] p-0"
+        data-testid="event-details-panel"
+      >
         <div className="p-4 h-full overflow-y-auto">
           <EventDetails />
         </div>

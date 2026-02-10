@@ -4,8 +4,9 @@ import { generateInitialEvents } from "@/entities/event/mocks/initialEvents";
 
 const MIN_WINDOW_SIZE = 100;
 const DEFAULT_WINDOW_SIZE = 2000;
-const INITIAL_EVENT_COUNT = 150;
-const INIT_LATENCY_MS = 1200;
+const INITIAL_EVENT_COUNT =
+  Number(import.meta.env.VITE_INITIAL_EVENT_COUNT) || 150;
+const INIT_LATENCY_MS = Number(import.meta.env.VITE_INIT_LATENCY_MS) || 1200;
 
 type EventState = {
   events: Event[];

@@ -24,7 +24,7 @@ export const EventDetails = () => {
   const formattedTimestamp = format(selected.timestamp, "yyyy-MM-dd HH:mm:ss");
 
   return (
-    <div className="h-full flex flex-col pt-12">
+    <div className="h-full flex flex-col pt-12" data-testid="event-details">
       <EventDetailsHeader onCopy={copy} />
       <div className="mt-4 space-y-4 text-sm flex-1 overflow-hidden">
         <div

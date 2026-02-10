@@ -16,7 +16,7 @@
     "test:coverage": "vitest run --coverage",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "test:e2e:ci": "start-server-and-test \"npm run dev -- --port 4173\" http://localhost:4173 \"cypress run\"",
+    "test:e2e:ci": "start-server-and-test \"VITE_EVENT_INTERVAL_MS=200 VITE_EVENT_JITTER_MS=200 VITE_INIT_LATENCY_MS=200 npm run dev -- --port 4173 --strictPort\" http://localhost:4173 \"cypress run\"",
     "prepare": "husky"
   },
   "dependencies": {

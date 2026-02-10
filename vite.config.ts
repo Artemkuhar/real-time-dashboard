@@ -5,6 +5,9 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  // Use BASE_PATH for GitHub Pages deployments; default to '/'
+  // Example: BASE_PATH=/real-time-dashboard/
+  base: process.env.BASE_PATH || "/",
   resolve: {
     alias: {
       "@": "/src",

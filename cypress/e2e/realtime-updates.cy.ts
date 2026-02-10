@@ -105,28 +105,32 @@ describe("Real-time Updates", () => {
 
     // Should be able to interact with events
     cy.getEventRows().first().click();
-    cy.get('[role="dialog"], [data-state="open"]').should("be.visible");
+    cy.waitForDetailsPanelOpen();
   });
 
   it("should preserve selected event when new events arrive", () => {
     // Select an event
     cy.getEventRows().first().click();
-    cy.get('[role="dialog"], [data-state="open"]').should("be.visible");
+    cy.waitForDetailsPanelOpen();
 
     // Get selected event details
     let selectedEventText: string;
-    cy.get('[role="dialog"], [data-state="open"]').then(($panel) => {
-      selectedEventText = $panel.text();
-    });
+    cy.get('[data-testid="event-details-panel"][data-state="open"]').then(
+      ($panel) => {
+        selectedEventText = $panel.text();
+      },
+    );
 
     // Wait for new events
-    cy.wait(4000);
+    cy.wait(5000);
 
     // Selected event details should still be visible
-    cy.get('[role="dialog"], [data-state="open"]').should("be.visible");
-    cy.get('[role="dialog"], [data-state="open"]').then(($panel) => {
-      // Content should be the same (same event selected)
-      expect($panel.text()).to.equal(selectedEventText);
-    });
+    cy.waitForDetailsPanelOpen();
+    cy.get('[data-testid="event-details-panel"][data-state="open"]').then(
+      ($panel) => {
+        // Content should be the same (same event selected)
+        expect($panel.text()).to.equal(selectedEventText);
+      },
+    );
   });
 });
