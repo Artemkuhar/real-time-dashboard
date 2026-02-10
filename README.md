@@ -1,3 +1,6 @@
+**Live Demo**: https://artemkuhar.github.io/real-time-dashboard/
+**Repository**: https://github.com/Artemkuhar/real-time-dashboard
+
 ## Real-Time Data Dashboard
 
 **Project Overview**
